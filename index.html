@@ -4,11 +4,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>LUMINA | The Future of Reflection</title>
-        <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;600&display=swap" rel="stylesheet">
         <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html {scroll-behavior: smooth;}   
+
             :root { --accent: #6366f1; }
+            
             body {
                 font-family: 'Outfit', sans-serif;
                 background-color: #000;
@@ -17,24 +24,79 @@
                 scroll-behavior: smooth;
             }
 
-            /* Premium Typography */
-            .tracking-ultra { letter-spacing: 0.6em; }
-            .text-gradient {
-                background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.4) 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-
-            .glass-nav {
+            /* Navigation */
+            nav {
+                position: fixed;
+                width: 100%;
+                z-index: 50;
                 background: rgba(0, 0, 0, 0.7);
                 backdrop-filter: blur(30px);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             }
 
-            /* Hero Image - Bleed Effect */
-            .hero-image-container {
-                mask-image: linear-gradient(to left, black 80%, transparent 100%);
-                -webkit-mask-image: linear-gradient(to left, black 80%, transparent 100%);
+            nav > div {
+                max-width: 80rem;
+                margin: 0 auto;
+                padding: 1.25rem 1.5rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .nav-brand {
+                font-weight: 300;
+                letter-spacing: 0.6em;
+                font-size: 0.875rem;
+            }
+
+            .nav-links {
+                display: none;
+                gap: 2.5rem;
+                font-size: 0.625rem;
+                text-transform: uppercase;
+                letter-spacing: 0.3em;
+                color: #9ca3af;
+            }
+
+            @media (min-width: 768px) {
+                .nav-links {
+                    display: flex;
+                }
+            }
+
+            .nav-links a {
+                color: #9ca3af;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: #fff;
+            }
+
+            .nav-badge {
+                font-size: 0.5625rem;
+                padding: 0.5rem 1.25rem;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 999px;
+                color: #a5b4fc;
+                letter-spacing: 0.0625em;
+                text-transform: uppercase;
+                background: rgba(99, 102, 241, 0.05);
+            }
+
+            /* Hero Section */
+            section {
+                position: relative;
+            }
+
+            .hero-section {
+                width: 100%;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+                background-color: #000;
             }
 
             .glow-sphere {
@@ -47,184 +109,597 @@
                 pointer-events: none;
             }
 
+            .hero-image-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding-right: 0rem;
+                padding-top: 6rem;
+            }
+
+            .hero-image-container img {
+                height: 110.333%;
+                width: auto;
+                object-fit: contain;
+            }
+
+            .hero-content-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                z-index: 10;
+            }
+
+            .hero-content {
+                width: 50%;
+                padding-left: 3rem;
+                padding-right: 3rem;
+                text-align: left;
+                animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+
+            .hero-subtitle {
+                color: #818cf8;
+                font-size: 0.6875rem;
+                letter-spacing: 0.5em;
+                text-transform: uppercase;
+                margin-bottom: 1.5rem;
+                display: block;
+                font-weight: 500;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+                font-weight: 300;
+                line-height: 0.9;
+                letter-spacing: -0.05em;
+                margin-bottom: 2rem;
+            }
+
+            .text-gradient {
+                background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.4) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .hero-description {
+                max-width: 28rem;
+                color: #d1d5db;
+                font-size: 1rem;
+                font-weight: 300;
+                line-height: 1.75;
+                margin-bottom: 2.5rem;
+            }
+
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn {
+                padding: 0.75rem 2rem;
+                font-size: 0.625rem;
+                text-transform: uppercase;
+                letter-spacing: 0.125em;
+                font-weight: 700;
+                border-radius: 0.125rem;
+                text-decoration: none;
+                display: inline-block;
+                transition: all 0.3s;
+                text-align: center;
+                border: none;
+                cursor: pointer;
+                width: fit-content;
+            }
+
+            .btn-primary {
+                background-color: #fff;
+                color: #000;
+            }
+
+            .btn-primary:hover {
+                background-color: #6366f1;
+                color: #fff;
+            }
+
+            .btn-secondary {
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                color: #fff;
+                background: transparent;
+            }
+
+            .btn-secondary:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            /* Feature Grid Section */
+            #engineering {
+                padding: 8rem 1.5rem;
+                background-color: #050505;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                position: relative;
+                z-index: 10;
+            }
+
+            @media (min-width: 768px) {
+                #engineering {
+                    padding: 8rem 3rem;
+                }
+            }
+
+            .features-container {
+                max-width: 80rem;
+                margin: 0 auto;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.0625rem;
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            @media (max-width: 768px) {
+                .features-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .feature-card {
+                padding: 3rem;
+                background-color: #000;
+                transition: all 0.3s;
+            }
+
+            @media (min-width: 768px) {
+                .feature-card {
+                    padding: 4rem;
+                }
+            }
+
+            .feature-icon {
+                width: 3rem;
+                height: 0.0625rem;
+                background-color: #6366f1;
+                margin-bottom: 2rem;
+                transition: all 0.4s;
+            }
+
+            .feature-card:hover .feature-icon {
+                width: 5rem;
+            }
+
+            .feature-category {
+                font-size: 0.6875rem;
+                text-transform: uppercase;
+                letter-spacing: 0.3em;
+                color: #818cf8;
+                margin-bottom: 1rem;
+            }
+
+            .feature-title {
+                font-size: 1.5rem;
+                font-weight: 300;
+                margin-bottom: 1.5rem;
+            }
+
+            .feature-description {
+                color: #6b7280;
+                font-size: 0.875rem;
+                line-height: 1.75;
+                font-weight: 300;
+            }
+
+            /* Team Section */
+            #team {
+                padding: 10rem 1.5rem;
+                position: relative;
+            }
+
+            @media (min-width: 768px) {
+                #team {
+                    padding: 10rem 3rem;
+                }
+            }
+
+            .team-container {
+                max-width: 80rem;
+                margin: 0 auto;
+            }
+
+            .team-header {
+                text-align: center;
+                margin-bottom: 6rem;
+            }
+
+            .team-subtitle {
+                color: #818cf8;
+                font-size: 0.625rem;
+                letter-spacing: 0.5em;
+                text-transform: uppercase;
+                margin-bottom: 1rem;
+                display: block;
+            }
+
+            .team-title {
+                font-size: 3rem;
+                font-weight: 300;
+                letter-spacing: -0.02em;
+            }
+
+            .team-section-label {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .team-label-line {
+                height: 0.0625rem;
+                width: 3rem;
+                background-color: rgba(99, 102, 241, 0.5);
+            }
+
+            .team-label-text {
+                font-size: 0.625rem;
+                text-transform: uppercase;
+                letter-spacing: 0.125em;
+                color: #6b7280;
+            }
+
+            /* Mentors */
+            .mentors-section {
+                margin-bottom: 5rem;
+            }
+
+            .mentors-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                max-width: 56rem;
+            }
+
+            @media (max-width: 768px) {
+                .mentors-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
             .team-card {
                 background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
                 border: 1px solid rgba(255,255,255,0.05);
-                transition: all 0.4s ease;
+                padding: 2rem;
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                transition: all 0.4s;
             }
+
             .team-card:hover {
                 border-color: rgba(99, 102, 241, 0.4);
                 background: rgba(99, 102, 241, 0.05);
                 transform: translateY(-5px);
             }
 
-            @keyframes reveal {
-                from { opacity: 0; transform: translateY(30px); }
-                to { opacity: 1; transform: translateY(0); }
+            .team-avatar {
+                width: 5rem;
+                height: 5rem;
+                background-color: #27272a;
+                border-radius: 50%;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                overflow: hidden;
+                flex-shrink: 0;
             }
-            .reveal { animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+            .team-avatar img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .team-info h4 {
+                font-size: 1.125rem;
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+            }
+
+            .team-info p {
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+            .team-role {
+                color: #818cf8;
+                margin-bottom: 0.5rem;
+            }
+
+            .team-desc {
+                color: #6b7280;
+                font-weight: 300;
+                text-transform: none;
+                letter-spacing: normal;
+                font-size: 0.8rem;
+            }
+
+            /* Team Members Grid */
+            .team-members-section {
+                margin-top: 5rem;
+            }
+
+            .members-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            @media (min-width: 1024px) {
+                .members-grid {
+                    grid-template-columns: repeat(5, 1fr);
+                }
+            }
+
+            .member-card {
+                background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+                border: 1px solid rgba(255,255,255,0.05);
+                padding: 1.5rem;
+                text-align: center;
+                transition: all 0.4s;
+            }
+
+            .member-card:hover {
+                border-color: rgba(99, 102, 241, 0.4);
+                background: rgba(99, 102, 241, 0.05);
+                transform: translateY(-5px);
+            }
+
+            .member-avatar {
+                width: 6rem;
+                height: 6rem;
+                background-color: #27272a;
+                border-radius: 50%;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                margin: 0 auto 1.5rem;
+                overflow: hidden;
+            }
+
+            .member-avatar img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .member-name {
+                font-size: 0.875rem;
+                font-weight: 500;
+                margin-bottom: 0.25rem;
+            }
+
+            .member-role {
+                font-size: 0.5625rem;
+                color: #6b7280;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+            /* Footer */
+            footer {
+                padding: 5rem 1.5rem;
+                text-align: center;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                background-color: #000;
+            }
+
+            .footer-brand {
+                font-weight: 300;
+                letter-spacing: 1.5em;
+                font-size: 0.6875rem;
+                color: #9ca3af;
+                margin-bottom: 2rem;
+            }
+
+            .footer-text {
+                font-size: 0.5625rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5em;
+                color: #4b5563;
+                margin-bottom: 1rem;
+            }
+
+            .footer-copyright {
+                font-size: 0.5625rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5em;
+                color: #1f2937;
+            }
+
+            @keyframes reveal {
+                from { 
+                    opacity: 0; 
+                    transform: translateY(30px); 
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0); 
+                }
+            }
+
+            .reveal { 
+                animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+            }
         </style>
     </head>
     <body>
 
         <!-- Navigation -->
-        <nav class="fixed w-full z-50 glass-nav">
-            <div class="max-w-7xl mx-auto px-6 md:px-12 py-5 flex justify-between items-center">
-                <div class="font-light tracking-ultra text-sm">LUMINA</div>
-                <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.3em] text-gray-400">
-                    <a href="#vision" class="hover:text-white transition-all">Vision</a>
-                    <a href="#engineering" class="hover:text-white transition-all">Engineering</a>
-                    <a href="#team" class="hover:text-white transition-all">The Collective</a>
+        <nav>
+            <div>
+                <div class="nav-brand">LUMINA</div>
+                <div class="nav-links">
+                    <a href="#vision">Vision</a>
+                    <a href="#engineering">Engineering</a>
+                    <a href="#team">The Collective</a>
                 </div>
-                <div class="text-[9px] px-5 py-2 border border-white/10 rounded-full text-indigo-300 tracking-widest uppercase bg-indigo-500/5">
+                <div class="nav-badge">
                     Lab Access: Sunway RAIN
                 </div>
             </div>
         </nav>
 
         <!-- Hero Section -->
-        <section class="relative min-h-screen flex items-center overflow-hidden pt-20">
+        <section class="hero-section">
             <div class="glow-sphere" style="top: -20%; right: -10%;"></div>
             
-            <div class="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col md:flex-row items-center">
-                <!-- Left Side: Content -->
-                <div class="w-full md:w-1/2 z-10 text-center md:text-left reveal">
-                    <span class="text-indigo-400 text-[11px] tracking-[0.5em] uppercase mb-6 block font-medium">State-of-the-Art Reflection</span>
-                    <h1 class="text-6xl md:text-[100px] font-light leading-[0.9] tracking-tighter mb-8 text-gradient">
+            <!-- Hero Image -->
+            <div class="hero-image-container">
+                <img src="assets/lumina-hero.png" 
+                    alt="Lumina Exploded View">
+            </div>
+
+            <!-- Content Overlay - Left Side -->
+            <div class="hero-content-overlay">
+                <div class="hero-content">
+                    <span class="hero-subtitle">State-of-the-Art Reflection</span>
+                    <h1 class="hero-title text-gradient">
                         Intelligence <br>in Every <br>Fiber.
                     </h1>
-                    <p class="max-w-md mx-auto md:mx-0 text-gray-400 text-lg font-light leading-relaxed mb-10">
+                    <p class="hero-description">
                         A seamless fusion of computer vision and architectural glass. 
                         Designed to empower the modern campus with invisible intelligence.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="#vision" class="px-8 py-4 bg-white text-black text-[10px] uppercase tracking-widest font-bold rounded-sm hover:bg-indigo-500 hover:text-white transition-all duration-300">View Prototype</a>
-                        <a href="#engineering" class="px-8 py-4 border border-white/20 text-white text-[10px] uppercase tracking-widest font-bold rounded-sm hover:bg-white/10 transition-all duration-300">Specifications</a>
+                    <div class="hero-buttons">
+                        <a href="#vision" class="btn btn-primary">View Prototype</a>
+                        <a href="#engineering" class="btn btn-secondary">Specifications</a>
                     </div>
-                </div>
-
-                <!-- Right Side: Enlarged Hero Image -->
-                <div class="w-full md:w-3/5 mt-20 md:mt-0 md:absolute md:-right-20 hero-image-container reveal" style="animation-delay: 0.3s;">
-                    <img src="assets/lumina-hero.png" 
-                        alt="Lumina Exploded View" 
-                        class="w-full h-auto scale-110 md:scale-125 transition-transform duration-[2s] hover:scale-110">
-                    <!-- Note: Ensure the image filename matches your local file "lumina-hero.png" -->
                 </div>
             </div>
         </section>
 
         <!-- Feature Grid -->
-        <section id="engineering" class="py-32 bg-[#050505] px-6 md:px-12 border-y border-white/5 relative z-10">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid md:grid-cols-3 gap-px bg-white/10 border border-white/10">
-                    <div class="p-12 md:p-16 bg-black group transition-colors">
-                        <div class="w-12 h-[1px] bg-indigo-500 mb-8 transition-all group-hover:w-20"></div>
-                        <h3 class="text-[11px] uppercase tracking-[0.3em] text-indigo-400 mb-4">Architecture</h3>
-                        <h4 class="text-2xl font-light mb-6">Edge Intelligence</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed font-light">Custom-built Raspberry Pi 5 kernel optimized for 100% on-device inference. Your data never leaves the hardware.</p>
+        <section id="engineering">
+            <div class="features-container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"></div>
+                        <h3 class="feature-category">Architecture</h3>
+                        <h4 class="feature-title">Edge Intelligence</h4>
+                        <p class="feature-description">Custom-built Raspberry Pi 5 kernel optimized for 100% on-device inference. Your data never leaves the hardware.</p>
                     </div>
-                    <div class="p-12 md:p-16 bg-black group transition-colors">
-                        <div class="w-12 h-[1px] bg-indigo-500 mb-8 transition-all group-hover:w-20"></div>
-                        <h3 class="text-[11px] uppercase tracking-[0.3em] text-indigo-400 mb-4">Optics</h3>
-                        <h4 class="text-2xl font-light mb-6">Dielectric Display</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed font-light">A 500-nit hidden LCD panel paired with two-way acrylic glass for a perfect reflection when off, and vivid clarity when active.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon"></div>
+                        <h3 class="feature-category">Optics</h3>
+                        <h4 class="feature-title">Dielectric Display</h4>
+                        <p class="feature-description">A 500-nit hidden LCD panel paired with two-way acrylic glass for a perfect reflection when off, and vivid clarity when active.</p>
                     </div>
-                    <div class="p-12 md:p-16 bg-black group transition-colors">
-                        <div class="w-12 h-[1px] bg-indigo-500 mb-8 transition-all group-hover:w-20"></div>
-                        <h3 class="text-[11px] uppercase tracking-[0.3em] text-indigo-400 mb-4">Sensing</h3>
-                        <h4 class="text-2xl font-light mb-6">Spatial Awareness</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed font-light">PIR motion sensors and ultrasonic distance tracking allow Lumina to react to your presence before you even reach the glass.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon"></div>
+                        <h3 class="feature-category">Sensing</h3>
+                        <h4 class="feature-title">Spatial Awareness</h4>
+                        <p class="feature-description">PIR motion sensors and ultrasonic distance tracking allow Lumina to react to your presence before you even reach the glass.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Team Section -->
-        <section id="team" class="py-40 px-6 md:px-12 relative">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-24">
-                    <span class="text-indigo-400 text-[10px] tracking-[0.5em] uppercase mb-4 block">The Minds Behind Lumina</span>
-                    <h2 class="text-5xl font-light tracking-tight">The Collective</h2>
+        <section id="team">
+            <div class="team-container">
+                <div class="team-header">
+                    <span class="team-subtitle">The Minds Behind Lumina</span>
+                    <h2 class="team-title">The Collective</h2>
                 </div>
 
                 <!-- Mentors -->
-                <div class="mb-20">
-                    <div class="flex items-center gap-4 mb-10">
-                        <div class="h-[1px] w-12 bg-indigo-500/50"></div>
-                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Project Mentors</span>
+                <div class="mentors-section">
+                    <div class="team-section-label">
+                        <div class="team-label-line"></div>
+                        <span class="team-label-text">Project Mentors</span>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+                    <div class="mentors-grid">
                         <!-- Mentor 1 -->
-                        <div class="team-card p-8 flex items-center gap-6">
-                            <div class="w-20 h-20 bg-zinc-900 rounded-full border border-white/10 overflow-hidden">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mentor1" alt="Mentor">
+                        <div class="team-card">
+                            <div class="team-avatar">
+                                <img src="assets/AyushDangol.jpeg" alt="Mentor">
                             </div>
-                            <div>
-                                <h4 class="text-lg font-medium">Mr. Ayush Dangol</h4>
-                                <p class="text-indigo-400 text-[10px] uppercase tracking-widest mb-2">Lead Researcher</p>
-                                <p class="text-gray-500 text-xs font-light">Specializing in Human-Computer Interaction & Embedded Systems.</p>
+                            <div class="team-info">
+                                <h4>Mr. Ayush Dangol</h4>
+                                <p class="team-role">Specializing in Human-Computer Interaction & Embedded Systems</p>
+                                <p class="team-desc">Supports project direction, academic alignment, documentation quality, and overall system design within institutional requirements..</p>
                             </div>
                         </div>
                         <!-- Mentor 2 -->
-                        <div class="team-card p-8 flex items-center gap-6">
-                            <div class="w-20 h-20 bg-zinc-900 rounded-full border border-white/10 overflow-hidden">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mentor2" alt="Mentor">
+                        <div class="team-card">
+                            <div class="team-avatar">
+                                <img src="assets/RajKumarChaurasiya.jpeg" alt="Mentor">
                             </div>
-                            <div>
-                                <h4 class="text-lg font-medium"></h4>
-                                <p class="text-indigo-400 text-[10px] uppercase tracking-widest mb-2">Technical Advisor</p>
-                                <p class="text-gray-500 text-xs font-light">Expert in Computer Vision and AI Hardware Optimization.</p>
+                            <div class="team-info">
+                                <h4>Mr. Raj Kumar Chaurasiya</h4>
+                                <p class="team-role">Expert in Computer Vision and AI Hardware Optimization</p>
+                                <p class="team-desc">Provides technical guidance on AI implementation, computer vision integration, hardware optimization, and real-world system scalability for LUMINA..</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Team Members -->
-                <div>
-                    <div class="flex items-center gap-4 mb-10">
-                        <div class="h-[1px] w-12 bg-indigo-500/50"></div>
-                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Core Engineering Team</span>
+                <div class="team-members-section">
+                    <div class="team-section-label">
+                        <div class="team-label-line"></div>
+                        <span class="team-label-text">Core Engineering Team</span>
                     </div>
-                    <div class="grid grid-cols-2 lg:grid-cols-5 gap-6">
+                    <div class="members-grid">
                         <!-- Member 1 -->
-                        <div class="team-card p-6 text-center">
-                            <div class="w-24 h-24 bg-zinc-900 rounded-full border border-white/10 mx-auto mb-6 overflow-hidden">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Team1" alt="Team Member">
+                        <div class="member-card">
+                            <div class="member-avatar">
+                                <img src="assets/UtkirstaAdhikari.jpeg" alt="Team Member">
                             </div>
-                            <h4 class="text-sm font-medium mb-1">Utkirsta Adhikari</h4>
-                            <p class="text-[9px] text-gray-500 uppercase tracking-widest">Hardware and Team lead</p>
+                            <h4 class="member-name">Utkirsta Adhikari</h4>
+                            <p class="member-role">Hardware and Team lead</p>
                         </div>
                         <!-- Member 2 -->
-                        <div class="team-card p-6 text-center">
-                            <div class="w-24 h-24 bg-zinc-900 rounded-full border border-white/10 mx-auto mb-6 overflow-hidden">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Team2" alt="Team Member">
+                        <div class="member-card">
+                            <div class="member-avatar">
+                                <img src="assets/SulavNepal.jpeg" alt="Team Member">
                             </div>
-                            <h4 class="text-sm font-medium mb-1">Sulav Nepal</h4>
-                            <p class="text-[9px] text-gray-500 uppercase tracking-widest">AI Software</p>
+                            <h4 class="member-name">Sulav Nepal</h4>
+                            <p class="member-role">AI Software</p>
                         </div>
                         <!-- Member 3 -->
-                        <div class="team-card p-6 text-center">
-                            <div class="w-24 h-24 bg-zinc-900 rounded-full border border-white/10 mx-auto mb-6 overflow-hidden">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Team3" alt="Team Member">
+                        <div class="member-card">
+                            <div class="member-avatar">
+                                <img src="assets/PrinceKC.jpeg" alt="Team Member">
                             </div>
-                            <h4 class="text-sm font-medium mb-1">Prince KC</h4>
-                            <p class="text-[9px] text-gray-500 uppercase tracking-widest">UI/UX Designer</p>
+                            <h4 class="member-name">Prince KC</h4>
+                            <p class="member-role">UI/UX Designer</p>
                         </div>
                         <!-- Member 4 -->
-                        <div class="team-card p-6 text-center">
-                            <div class="w-24 h-24 bg-zinc-900 rounded-full border border-white/10 mx-auto mb-6 overflow-hidden">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Team4" alt="Team Member">
+                        <div class="member-card">
+                            <div class="member-avatar">
+                                <img src="assets/NishantKumarKharga.jpeg" alt="Team Member">
                             </div>
-                            <h4 class="text-sm font-medium mb-1">Nishant kumar Kharga</h4>
-                            <p class="text-[9px] text-gray-500 uppercase tracking-widest">Integration</p>
+                            <h4 class="member-name">Nishant kumar Kharga</h4>
+                            <p class="member-role">Integration</p>
                         </div>
                         <!-- Member 5 -->
-                        <div class="team-card p-6 text-center">
-                            <div class="w-24 h-24 bg-zinc-900 rounded-full border border-white/10 mx-auto mb-6 overflow-hidden">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Team5" alt="Team Member">
+                        <div class="member-card">
+                            <div class="member-avatar">
+                                <img src="assets/AnushaGhimire.jpeg" alt="Team Member">
                             </div>
-                            <h4 class="text-sm font-medium mb-1">Anusha Ghimire</h4>
-                            <p class="text-[9px] text-gray-500 uppercase tracking-widest">Systems QA</p>
+                            <h4 class="member-name">Anusha Ghimire</h4>
+                            <p class="member-role">Systems QA</p>
                         </div>
                     </div>
                 </div>
@@ -232,10 +707,10 @@
         </section>
 
         <!-- Footer -->
-        <footer class="py-20 text-center border-t border-white/5 bg-black">
-            <div class="font-light tracking-[1.5em] text-[11px] text-gray-400 mb-8">L U M I N A</div>
-            <p class="text-[9px] uppercase tracking-[0.5em] text-gray-600 mb-4">Developed for the 2025 SUNWAY RAIN Innovation Summit</p>
-            <p class="text-[9px] uppercase tracking-[0.5em] text-gray-800">© 2025 ALL RIGHTS RESERVED</p>
+        <footer>
+            <div class="footer-brand">L U M I N A</div>
+            <p class="footer-text">Developed for the 2025 SUNWAY RAIN Innovation Summit</p>
+            <p class="footer-copyright">© 2025 ALL RIGHTS RESERVED</p>
         </footer>
 
         <script>
