@@ -721,6 +721,153 @@
             .reveal { 
                 animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
             }
+
+            /* Future Implementation Section */
+            #future-implementation {
+                padding: 4rem 1.5rem;
+                background-color: #000;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                position: relative;
+            }
+
+            @media (min-width: 768px) {
+                #future-implementation {
+                    padding: 8rem 3rem;
+                }
+            }
+
+            .future-container {
+                max-width: 80rem;
+                margin: 0 auto;
+            }
+
+            .future-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            @media (min-width: 768px) {
+                .future-header {
+                    margin-bottom: 6rem;
+                }
+            }
+
+            .future-subtitle {
+                color: #818cf8;
+                font-size: 0.625rem;
+                letter-spacing: 0.5em;
+                text-transform: uppercase;
+                margin-bottom: 1rem;
+                display: block;
+            }
+
+            .future-title {
+                font-size: 2rem;
+                font-weight: 300;
+                letter-spacing: -0.02em;
+            }
+
+            @media (min-width: 768px) {
+                .future-title {
+                    font-size: 3rem;
+                }
+            }
+
+            .future-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            @media (min-width: 640px) {
+                .future-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (min-width: 1024px) {
+                .future-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+
+            .future-card {
+                background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+                border: 1px solid rgba(255,255,255,0.05);
+                padding: 1.5rem;
+                text-align: center;
+                transition: all 0.4s;
+            }
+
+            @media (min-width: 768px) {
+                .future-card {
+                    padding: 2.5rem;
+                }
+            }
+
+            .future-card:hover {
+                border-color: rgba(99, 102, 241, 0.4);
+                background: rgba(99, 102, 241, 0.05);
+                transform: translateY(-5px);
+            }
+
+            .future-card.coming-soon {
+                border-color: rgba(255,255,255,0.05);
+                opacity: 0.7;
+            }
+
+            .future-card.coming-soon:hover {
+                border-color: rgba(255,255,255,0.1);
+                background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+                transform: none;
+            }
+
+            .future-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                display: inline-block;
+            }
+
+            @media (min-width: 768px) {
+                .future-icon {
+                    font-size: 3rem;
+                    margin-bottom: 1.5rem;
+                }
+            }
+
+            .future-card h3 {
+                font-size: 1.125rem;
+                font-weight: 300;
+                margin-bottom: 1rem;
+            }
+
+            @media (min-width: 768px) {
+                .future-card h3 {
+                    font-size: 1.25rem;
+                }
+            }
+
+            .future-card p {
+                color: #9ca3af;
+                font-size: 0.875rem;
+                line-height: 1.6;
+                font-weight: 300;
+            }
+
+            @media (min-width: 768px) {
+                .future-card p {
+                    font-size: 0.95rem;
+                    line-height: 1.7;
+                }
+            }
+
+            .future-coming-soon {
+                color: #6b7280;
+                font-size: 0.8125rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                font-weight: 400;
+            }
         </style>
     </head>
     <body>
@@ -887,11 +1034,54 @@
             </div>
         </section>
         <!-- Future Implementation section -->
-        <section class="future-implementation">
-                <div class="team-container">
-                    <div class="team-header">
-                        <span class="team-subtitle">Beyond the Prototype</span>
-                        <h2 class="team-title">Future Implementation</h2>
+        <section id="future-implementation">
+            <div class="future-container">
+                <div class="future-header">
+                    <span class="future-subtitle">Beyond the Prototype</span>
+                    <h2 class="future-title">Future Implementation</h2>
+                </div>
+
+                <div class="future-grid">
+                    <!-- Facial Recognition Card -->
+                    <div class="future-card">
+                        <div class="future-icon">👤</div>
+                        <h3>Facial Recognition & Data Storage</h3>
+                        <p>Secure biometric student identification system enabling personalized campus experiences. Facial data stored locally on-device with military-grade encryption for privacy protection.</p>
+                    </div>
+
+                    <!-- Semester Schedule Integration Card -->
+                    <div class="future-card">
+                        <div class="future-icon">📅</div>
+                        <h3>Semester Schedule Integration</h3>
+                        <p>Real-time display of student class schedules, room locations, and campus announcements. Integration with institutional calendar systems for seamless schedule synchronization.</p>
+                    </div>
+
+                    <!-- Attendance Tracking Card -->
+                    <div class="future-card coming-soon">
+                        <div class="future-icon">✓</div>
+                        <h3>Automated Attendance Tracking</h3>
+                        <p class="future-coming-soon">Coming Soon</p>
+                    </div>
+
+                    <!-- Campus Navigation Card -->
+                    <div class="future-card coming-soon">
+                        <div class="future-icon">🗺️</div>
+                        <h3>Smart Campus Navigation</h3>
+                        <p class="future-coming-soon">Coming Soon</p>
+                    </div>
+
+                    <!-- Resource Booking Card -->
+                    <div class="future-card coming-soon">
+                        <div class="future-icon">📍</div>
+                        <h3>Resource & Space Booking</h3>
+                        <p class="future-coming-soon">Coming Soon</p>
+                    </div>
+
+                    <!-- AI Analytics Card -->
+                    <div class="future-card coming-soon">
+                        <div class="future-icon">📊</div>
+                        <h3>Behavioral Analytics</h3>
+                        <p class="future-coming-soon">Coming Soon</p>
                     </div>
                 </div>
             </div>
