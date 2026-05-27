@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LUMINA Tailor - Adaptive intelligence that learns your lifestyle and personalizes your experience.">
+    <meta name="theme-color" content="#000000">
+    <title>Tailor | LUMINA - Personalized Intelligence</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {scroll-behavior: smooth;}
+
+        :root { --accent: #6366f1; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav > div {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-weight: 300;
+            letter-spacing: 0.6em;
+            font-size: 0.75rem;
+            text-decoration: none;
+            color: #9ca3af;
+        }
+
+        @media (min-width: 768px) {
+            .nav-brand {
+                font-size: 0.875rem;
+            }
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2.5rem;
+            font-size: 0.625rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #9ca3af;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-badge {
+            display: none;
+            font-size: 0.5625rem;
+            padding: 0.5rem 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            color: #a5b4fc;
+            letter-spacing: 0.0625em;
+            text-transform: uppercase;
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        @media (min-width: 768px) {
+            .nav-badge {
+                display: block;
+            }
+        }
+
+        /* Hero Section */
+        section {
+            position: relative;
+        }
+
+        .hero-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #000;
+            padding-top: 6rem;
+        }
+
+        .glow-sphere {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @media (min-width: 768px) {
+            .glow-sphere {
+                width: 1000px;
+                height: 1000px;
+            }
+        }
+
+        .hero-content {
+            max-width: 60rem;
+            width: 100%;
+            padding: 1.5rem;
+            text-align: center;
+            z-index: 10;
+            animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                padding: 3rem;
+            }
+        }
+
+        .hero-subtitle {
+            color: #818cf8;
+            font-size: 0.625rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+                line-height: 1.05;
+                margin-bottom: 2rem;
+            }
+        }
+
+        .text-gradient {
+            background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.4) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            max-width: 40rem;
+            margin: 0 auto 2rem;
+            color: #d1d5db;
+            font-size: 0.875rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        @media (min-width: 768px) {
+            .hero-description {
+                font-size: 1rem;
+                line-height: 1.8;
+                margin-bottom: 2.5rem;
+            }
+        }
+
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tailor Cards Section */
+        .tailor-section {
+            padding: 4rem 1.5rem;
+            background-color: #050505;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            .tailor-section {
+                padding: 8rem 3rem;
+            }
+        }
+
+        .section-container {
+            max-width: 80rem;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-header {
+                margin-bottom: 4rem;
+            }
+        }
+
+        .section-subtitle {
+            color: #818cf8;
+            font-size: 0.625rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+            line-height: 1.5;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+                line-height: 1.15;
+            }
+        }
+
+        /* Personality Grid */
+        .personality-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .personality-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.5rem;
+            }
+        }
+
+        .personality-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(99, 102, 241, 0.02) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 2.5rem 2rem;
+            border-radius: 0.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .personality-card {
+                padding: 3rem;
+            }
+        }
+
+        .personality-card:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.1);
+        }
+
+        .personality-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #818cf8;
+        }
+
+        .personality-name {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        @media (min-width: 768px) {
+            .personality-name {
+                font-size: 1.75rem;
+            }
+        }
+
+        .personality-description {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Features List */
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-check {
+            color: #818cf8;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            color: #d1d5db;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .feature-text strong {
+            color: #fff;
+            font-weight: 400;
+        }
+
+        /* How It Works Section */
+        .how-section {
+            padding: 4rem 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            .how-section {
+                padding: 8rem 3rem;
+            }
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .steps-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2.5rem;
+            }
+        }
+
+        .step-card {
+            text-align: center;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 300;
+            color: rgba(99, 102, 241, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .step-description {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 4rem 1.5rem;
+            background-color: #050505;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            .benefits-section {
+                padding: 8rem 3rem;
+            }
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        .benefit-item {
+            padding: 2rem;
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 0.25rem;
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .benefit-title {
+            font-size: 1.125rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
+
+        .benefit-description {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .footer-content {
+            max-width: 80rem;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .footer-link {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #fff;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 4rem 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-section {
+                padding: 8rem 3rem;
+            }
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #818cf8;
+            font-size: 3rem;
+        }
+
+        .gallery-item:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0.1) 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 1.5rem;
+            background-color: #050505;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            .contact-section {
+                padding: 8rem 3rem;
+            }
+        }
+
+        .contact-container {
+            max-width: 60rem;
+            margin: 0 auto;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            color: #818cf8;
+            font-size: 1.5rem;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .contact-text p {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .contact-text a {
+            color: #818cf8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-text a:hover {
+            color: #fff;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: #d1d5db;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.875rem 1rem;
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 0.25rem;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            padding: 0.875rem 2rem;
+            background-color: #818cf8;
+            color: #000;
+            border: none;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            background-color: #6366f1;
+            transform: translateY(-2px);
+        }
+
+        .form-submit:active {
+            transform: translateY(0);
+        }
+
+        .form-status {
+            transition: all 0.3s ease;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        @media (max-width: 767px) {
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Main navigation">
+        <div>
+            <a href="index.html" class="nav-brand" aria-label="LUMINA Home">LUMINA</a>
+            <div class="nav-links" role="menubar">
+                <a href="index.html#vision">Vision</a>
+                <a href="index.html#engineering">Engineering</a>
+                <a href="index.html#team">The Collective</a>
+                <a href="tailor.html" class="active">Tailor</a>
+            </div>
+            <div class="nav-badge">
+                Personalization Engine
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" aria-label="Hero section">
+        <div class="glow-sphere" style="top: -20%; left: -10%;" aria-hidden="true"></div>
+
+        <div class="hero-content">
+            <span class="hero-subtitle">Adaptive Intelligence</span>
+            <h1 class="hero-title text-gradient">
+                Tailored to You
+            </h1>
+            <p class="hero-description">
+                LUMINA learns your lifestyle and adapts its functionality to match your personality. 
+                Whether you're an athlete, professional, or creative—your intelligence mirror becomes uniquely yours.
+            </p>
+        </div>
+    </section>
+
+    <!-- Personality Types Section -->
+    <section class="tailor-section" aria-label="Personality types">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-subtitle">Customization</span>
+                <h2 class="section-title">Personality-Driven Features</h2>
+            </div>
+
+            <div class="personality-grid">
+                <!-- Sports Personality -->
+                <div class="personality-card">
+                    <div class="personality-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="personality-name">Sports Enthusiast</h3>
+                    <p class="personality-description">
+                        Built for athletes who want to track every metric of their performance and wellness.
+                    </p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-check"><i class="fas fa-check-circle"></i></span>
+                            <span class="feature-text"><strong>Step Counter:</strong> Syncs with wearables to track daily steps and activity goals</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-check"><i class="fas fa-check-circle"></i></span>
+                            <span class="feature-text"><strong>Calorie Tracking:</strong> Real-time calorie burn data from your smartwatch and fitness bands</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-check"><i class="fas fa-check-circle"></i></span>
+                            <span class="feature-text"><strong>Performance Metrics:</strong> Heart rate, sleep quality, and recovery insights</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-check"><i class="fas fa-check-circle"></i></span>
+                            <span class="feature-text"><strong>Workout History:</strong> Visual timeline of all your exercises and achievements</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Professional -->
+                <div class="personality-card">
+                    <div class="personality-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="personality-name">Business Professional</h3>
+                    <p class="personality-description">
+                        Designed for busy executives who need to stay organized and on top of their schedule.
+                    </p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-check"><i class="fas fa-check-circle"></i></span>
+                            <span class="feature-text"><strong>Meeting Scheduler:</strong> Display upcoming meetings and reminders with countdown timers</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-check"><i class="fas fa-check-circle"></i></span>
+                            <span class="feature-text"><strong>Appointment Alerts:</strong> Real-time notifications synced with your calendar (Google, Outlook, etc.)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-check"><i class="fas fa-check-circle"></i></span>
+                            <span class="feature-text"><strong>Availability Dashboard:</strong> Quick-view of your daily schedule and free slots</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-check"><i class="fas fa-check-circle"></i></span>
+                            <span class="feature-text"><strong>Task Management:</strong> To-do lists and priority tracking displayed on your mirror</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-section" aria-label="How it works">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-subtitle">Process</span>
+                <h2 class="section-title">How Tailoring Works</h2>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Personality Selection</h3>
+                    <p class="step-description">
+                        Choose your personality type during initial setup. You can switch or customize categories anytime.
+                    </p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Device Pairing</h3>
+                    <p class="step-description">
+                        Connect your smartwatch, fitness tracker, or calendar service for real-time data synchronization.
+                    </p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Personalized Display</h3>
+                    <p class="step-description">
+                        LUMINA instantly adapts its interface to show only the metrics and information relevant to your life.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section" aria-label="Benefits">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-subtitle">Advantages</span>
+                <h2 class="section-title">Why Personalization Matters</h2>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h3 class="benefit-title">Relevant Information at a Glance</h3>
+                    <p class="benefit-description">
+                        See only what matters to you. No clutter, no distractions—just the data that drives your decisions.
+                    </p>
+                </div>
+                <div class="benefit-item">
+                    <h3 class="benefit-title">Seamless Integration</h3>
+                    <p class="benefit-description">
+                        LUMINA works with all major wearables and platforms. Your existing devices become smarter.
+                    </p>
+                </div>
+                <div class="benefit-item">
+                    <h3 class="benefit-title">Real-Time Insights</h3>
+                    <p class="benefit-description">
+                        Get instant feedback on your performance whether it's steps, calories, meetings, or deadlines.
+                    </p>
+                </div>
+                <div class="benefit-item">
+                    <h3 class="benefit-title">Adaptive Learning</h3>
+                    <p class="benefit-description">
+                        The mirror learns your patterns over time and optimizes what it displays based on your habits.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" aria-label="Gallery showcase">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-subtitle">Visual Showcase</span>
+                <h2 class="section-title">Gallery</h2>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" aria-label="Contact section">
+        <div class="contact-container">
+            <div class="section-header" style="margin-bottom: 3rem;">
+                <span class="section-subtitle">Get in Touch</span>
+                <h2 class="section-title">Contact Us</h2>
+            </div>
+
+            <div class="contact-content">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:hello@lumina.com">hello@lumina.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+1234567890">+977 XXXXXXXXXX</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Location</h4>
+                            <p>Sunway College<br>Maitidevi, Kathmandau</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Hours</h4>
+                            <p>Monday - Friday<br>9:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form class="contact-form" id="contactForm" aria-label="Contact form">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" placeholder="How can we help?" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Tell us more..." required aria-required="true"></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">Send Message</button>
+                    <div id="formStatus" class="form-status" role="alert" aria-live="polite"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div>
+                <p>&copy; 2026 LUMINA. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="tailor.html" class="footer-link" aria-current="page">Tailor</a>
+                <a href="index.html#team" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handler
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const subject = document.getElementById('subject').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (!name || !email || !subject || !message) {
+                    formStatus.textContent = 'Please fill in all fields.';
+                    formStatus.style.color = '#ff6b6b';
+                    formStatus.style.fontSize = '0.875rem';
+                    formStatus.style.marginTop = '1rem';
+                    return;
+                }
+
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    formStatus.textContent = 'Please enter a valid email address.';
+                    formStatus.style.color = '#ff6b6b';
+                    formStatus.style.fontSize = '0.875rem';
+                    formStatus.style.marginTop = '1rem';
+                    return;
+                }
+
+                // Success message
+                formStatus.textContent = 'Thank you for your message! We\'ll get back to you soon.';
+                formStatus.style.color = '#818cf8';
+                formStatus.style.fontSize = '0.875rem';
+                formStatus.style.marginTop = '1rem';
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Clear message after 5 seconds
+                setTimeout(() => {
+                    formStatus.textContent = '';
+                }, 5000);
+            });
+        }
+
+        // Smooth scroll behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
